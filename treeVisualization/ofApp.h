@@ -25,4 +25,5 @@ public:
 	Tree *tree;
 	ofVec2f treePos;
 	bool viewFlag;
+	bool initFlag;
 };

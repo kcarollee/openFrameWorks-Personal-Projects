@@ -94,6 +94,17 @@ void Tree::drawInOrder(node *ptr)
 	}
 }
 
+void Tree::moveTowardsMouse(node *ptr)
+{
+	if (ptr != NULL) {
+
+		moveTowardsMouse(ptr->left);
+		ptr->pos += ofVec2f((ofGetMouseX() - ptr->pos.x) / 100, (ofGetMouseY() - ptr->pos.y) / 100);
+		moveTowardsMouse(ptr->right);
+
+	}
+}
+
 bool Tree::mouseInNode(node *ptr) {
 	if (ofGetMousePressed()) {
 		if (ofDist(ofGetMouseX(), ofGetMouseY(), ptr->pos.x, ptr->pos.y) <= 8) {

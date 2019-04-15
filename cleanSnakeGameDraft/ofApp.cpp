@@ -3,30 +3,53 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	snake.setup();
-	food = new ofRectangle(ofRandom(0, ofGetWidth()), ofRandom(0, ofGetHeight()), 20, 20);
+	font.load("verdana.ttf", 12);
+	snake = new Snake;
+	snake->setup();
+
+	food = new ofRectangle(ofRandom(0, ofGetWidth() - 20), ofRandom(0, ofGetHeight() - 20), 20, 20);
 	timeGap = 200;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	snake.move();
-
-	if (snake.touchedFood(food)) {
-		food = new ofRectangle(ofRandom(0, ofGetWidth()), ofRandom(0, ofGetHeight()), 20, 20);
+	cout << snake->headPositions.size() << endl;
+	snake->move();
+	message = "";
+	if (snake->collidedWithWindow()) {
+		message = "Game Over";
+		snake->headPositions.clear();
+		snake->bodyPositions.clear();
+		snake->setup();
+		timeGap = 200;
+	}
+	if (snake->touchedRectangle(food)) { 
+		snake->getLonger(snake->headPositions);
+		
+		food = new ofRectangle(ofRandom(0, ofGetWidth() - 20), ofRandom(0, ofGetHeight() - 20), 20, 20);
+		
 		if (timeGap <= 20) {
 			timeGap = 20;
 		}
 		else
 			timeGap -= 20;
+			
+			
 	}
 
 	Sleep(timeGap);
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	snake.draw();
+	snake->draw();
+	if (!snake->moveFlag) {
+		message = "Press any arrow key to start";
+		font.drawString(message, ofGetWidth() / 2, ofGetHeight() / 2 - 20);
+	}
+
+	ofSetColor(0, 255, 0);
 	ofDrawRectangle(*food);
 }
 

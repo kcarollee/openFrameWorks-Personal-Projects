@@ -22,9 +22,11 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 public:
-	Snake snake;
+	Snake *snake;
 	ofRectangle *food;
+	ofTrueTypeFont font;
 
+	string message; 
 	float timeGap;
 		
 };

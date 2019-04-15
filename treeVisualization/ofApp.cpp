@@ -21,13 +21,20 @@ void ofApp::draw(){
 	if (viewFlag) {
 		tree->viewData(tree->root);
 	}
+	if (initFlag) {
+		ofDrawBitmapString("Tree initialized", tree->rootPos);
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	if (key == 'c') {
 		tree = new Tree(treePos);
-		
+		initFlag = true;
+	}
+
+	else {
+		initFlag = false;
 	}
 	
 	if (key == 'w') {
@@ -44,6 +51,10 @@ void ofApp::keyPressed(int key){
 	else {
 		viewFlag = false;
 	}	
+
+	if (key == 'x') {
+		tree->moveTowardsMouse(tree->root);
+	}
 }
 
 //--------------------------------------------------------------
@@ -70,7 +81,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	
 }
 
 //--------------------------------------------------------------

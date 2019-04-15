@@ -22,6 +22,7 @@ public:
 	void viewData(node *ptr);
 	void dragNode(node *ptr);
 	bool mouseInNode(node *ptr);
+	void moveTowardsMouse(node *ptr);
 
 public:
 	node *root;
