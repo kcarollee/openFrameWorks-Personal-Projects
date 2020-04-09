@@ -29,6 +29,7 @@ float LineBox(vec3 p, vec3 pos, vec3 s){
 }
 
 // math util
+// based on https://www.shadertoy.com/view/3ssGWj and videos by The Art of Code
 float opSub(float d1, float d2){
 	return max(d1, -d2);
 }
